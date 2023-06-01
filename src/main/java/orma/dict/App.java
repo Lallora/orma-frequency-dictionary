@@ -1,14 +1,17 @@
 package orma.dict;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-
-import orma.dict.service.*;
+import orma.dict.service.DictionaryService;
+import orma.dict.service.FileService;
+import orma.dict.service.StringService;
 import orma.dict.service.impl.DictionaryServiceImpl;
 import orma.dict.service.impl.FileServiceImpl;
 import orma.dict.service.impl.StringServiceImpl;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static java.lang.System.*;
 
 public class App {
 
@@ -25,7 +28,7 @@ public class App {
         do {
             StringBuilder strFileContent = new StringBuilder();
             List<String> listRowsContent = fileService.readRowsFromFile(fullFileName, rowCounter, ROW_STEP);
-            if (listRowsContent.size() != 0) {
+            if (!listRowsContent.isEmpty()) {
                 rowCounter = ++rowCounter + listRowsContent.size();
                 for (String str : listRowsContent) {
                     strFileContent.append(" ").append(str);
@@ -51,13 +54,13 @@ public class App {
         } while (again);
 
         String gaps = "----------------------------------------------";
-        System.out.println(gaps);
-        System.out.println("\t  Частотный словарь. Всего слов: " + dict.size());
-        System.out.println(gaps);
+        out.println(gaps);
+        out.println("\t  Частотный словарь. Всего слов: " + dict.size());
+        out.println(gaps);
         dict.entrySet().stream()
                 .sorted(Map.Entry.<String, Integer>comparingByValue().reversed())
-                .forEach((entry) -> System.out.println(entry.getValue() + "\t\t" + entry.getKey()));
-        System.out.println(gaps);
+                .forEach((entry) -> out.println(entry.getValue() + "\t\t" + entry.getKey()));
+        out.println(gaps);
     }
 
 }
