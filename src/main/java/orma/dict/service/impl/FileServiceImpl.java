@@ -1,6 +1,5 @@
 package orma.dict.service.impl;
 
-
 import orma.dict.service.FileService;
 
 import java.io.FileReader;
@@ -10,8 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class FileServiceImpl implements FileService {
+import static java.lang.System.*;
 
+public class FileServiceImpl implements FileService {
 
     @Override
     public List<String> readFromFile(String fullFileName) {
@@ -24,7 +24,7 @@ public class FileServiceImpl implements FileService {
                 i++;
             }
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            out.println(ex.getMessage());
         }
         return list;
     }
@@ -47,11 +47,10 @@ public class FileServiceImpl implements FileService {
                 i++;
             }
         } catch (IOException ex) {
-            System.out.println(ex.getMessage());
+            out.println(ex.getMessage());
         }
         return list;
     }
-
 
     @Override
     public void writeToFile(String fullFileName, List<String> data) throws IOException {

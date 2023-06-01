@@ -5,6 +5,7 @@ import orma.dict.service.StringService;
 import java.util.Locale;
 
 public class StringServiceImpl implements StringService {
+
     @Override
     public String prepareString(String str) {
         String res = str
